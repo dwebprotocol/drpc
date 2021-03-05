@@ -19,7 +19,7 @@ const argv = minimist(process.argv.slice(2), {
 })
 
 if (!argv._.length) {
-  console.error('Usage: hrpc schema.proto [--rpc=rpc.js] [--messages=rpc-messages.js]')
+  console.error('Usage: drpc schema.proto [--rpc=rpc.js] [--messages=rpc-messages.js]')
   process.exit(1)
 }
 
@@ -41,14 +41,14 @@ if (!messages.RPCError) {
 
 const js = protobuf.toJS(schemaSource, {
   inlineEnc: true,
-  encodings: 'hrpc-runtime/encodings'
+  encodings: 'drpc-runtime/encodings'
 })
 
 const { services } = parse(schemaSource)
 
 const isVoid = (type) => {
   if (messages.hasOwnProperty(type)) return false
-  return type === 'NULL' || type === 'Void' || type === 'hrpc.Void'
+  return type === 'NULL' || type === 'Void' || type === 'drpc.Void'
 }
 
 let req = path.relative(path.dirname(argv.rpc), argv.messages)
@@ -58,8 +58,8 @@ req = req.replace(/\\/g, '/').replace(/\.js$/, '')
 const src = []
 
 src.push('const messages = require(\'' + req + '\')')
-src.push('const HRPC = require(\'hrpc-runtime\')')
-src.push('const RPC = require(\'hrpc-runtime/rpc\')')
+src.push('const DRPC = require(\'drpc-runtime\')')
+src.push('const RPC = require(\'drpc-runtime/rpc\')')
 src.push('')
 
 src.push(
@@ -87,13 +87,13 @@ const camelize = (name) => {
 
 const serviceId = service => {
   if (service.options.id) return Number(service.options.id)
-  if (service.options['hrpc.service']) return Number(service.options['hrpc.service'])
+  if (service.options['drpc.service']) return Number(service.options['drpc.service'])
   return null
 }
 
 const methodId = method => {
   if (method.options.id) return Number(method.options.id)
-  if (method.options['hrpc.method']) return Number(method.options['hrpc.method'])
+  if (method.options['drpc.method']) return Number(method.options['drpc.method'])
   return null
 }
 
@@ -101,7 +101,7 @@ for (const service of services) {
   const id = lastServiceId = serviceId(service) || (lastServiceId + 1)
 
   src.push('')
-  src.push('class HRPCService' + service.name + ' {')
+  src.push('class DRPCService' + service.name + ' {')
   src.push('  constructor (rpc) {')
   src.push('    const service = rpc.defineService({ id: ' + id + ' })')
 
@@ -149,7 +149,7 @@ for (const service of services) {
 
 src.push('')
 src.push(
-  'module.exports = class HRPCSession extends HRPC {',
+  'module.exports = class DRPCSession extends DRPC {',
   '  constructor (rawSocket, { maxSize = 2 * 1024 * 1024 * 1024 } = {}) {',
   '    super()',
   '',
@@ -174,7 +174,7 @@ for (const service of services) {
     src.push('')
   }
   const name = camelize(service.name)
-  src.push('    this.' + name + ' = new HRPCService' + service.name + '(rpc)')
+  src.push('    this.' + name + ' = new DRPCService' + service.name + '(rpc)')
 }
 
 src.push('  }')
