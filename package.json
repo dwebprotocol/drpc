@@ -1,6 +1,6 @@
 {
-  "name": "drpc",
-  "version": "1.0.0",
+  "name": "drpc_dweb",
+  "version": "1.0.1",
   "description": "Simple RPC with Protobuf services.",
   "bin": {
     "drpc": "./bin.js"

@@ -19,7 +19,7 @@ const argv = minimist(process.argv.slice(2), {
 })
 
 if (!argv._.length) {
-  console.error('Usage: drpc schema.proto [--rpc=rpc.js] [--messages=rpc-messages.js]')
+  console.error('Usage: drpc_dweb schema.proto [--rpc=rpc.js] [--messages=rpc-messages.js]')
   process.exit(1)
 }
 
@@ -48,7 +48,7 @@ const { services } = parse(schemaSource)
 
 const isVoid = (type) => {
   if (messages.hasOwnProperty(type)) return false
-  return type === 'NULL' || type === 'Void' || type === 'drpc.Void'
+  return type === 'NULL' || type === 'Void' || type === 'drpc_dweb.Void'
 }
 
 let req = path.relative(path.dirname(argv.rpc), argv.messages)
@@ -87,13 +87,13 @@ const camelize = (name) => {
 
 const serviceId = service => {
   if (service.options.id) return Number(service.options.id)
-  if (service.options['drpc.service']) return Number(service.options['drpc.service'])
+  if (service.options['drpc_dweb.service']) return Number(service.options['drpc_dweb.service'])
   return null
 }
 
 const methodId = method => {
   if (method.options.id) return Number(method.options.id)
-  if (method.options['drpc.method']) return Number(method.options['drpc.method'])
+  if (method.options['drpc_dweb.method']) return Number(method.options['drpc_dweb.method'])
   return null
 }
 
