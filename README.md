@@ -25,7 +25,7 @@ Then compile it using the drpc_dweb compiler
 ```
 npm install -g drpc_dweb
 drpc_dweb services.proto --rpc=rpc.js --messages=rpc-messages.js
-npm install --save drpc-runtime # make sure to add this to your package.json
+npm install --save drpc_dweb-runtime # make sure to add this to your package.json
 ```
 
 That's it!

@@ -1,6 +1,6 @@
 {
   "name": "drpc_dweb",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple RPC with Protobuf services.",
   "bin": {
     "drpc": "./bin.js"
@@ -11,7 +11,7 @@
     "protocol-buffers-schema": "^3.4.0"
   },
   "devDependencies": {
-    "drpc-runtime": "^1.0.0"
+    "drpc_dweb-runtime": "^1.0.0"
   },
   "repository": {
     "type": "git",

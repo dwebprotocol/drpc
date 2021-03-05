@@ -1,6 +1,6 @@
 const messages = require('./rpc-messages')
-const DRPC = require('drpc-runtime')
-const RPC = require('drpc-runtime/rpc')
+const DRPC = require('drpc_dweb-runtime')
+const RPC = require('drpc_dweb-runtime/rpc')
 
 const errorEncoding = {
   encode: messages.RPCError.encode,

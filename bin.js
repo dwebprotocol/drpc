@@ -41,7 +41,7 @@ if (!messages.RPCError) {
 
 const js = protobuf.toJS(schemaSource, {
   inlineEnc: true,
-  encodings: 'drpc-runtime/encodings'
+  encodings: 'drpc_dweb-runtime/encodings'
 })
 
 const { services } = parse(schemaSource)
@@ -58,8 +58,8 @@ req = req.replace(/\\/g, '/').replace(/\.js$/, '')
 const src = []
 
 src.push('const messages = require(\'' + req + '\')')
-src.push('const DRPC = require(\'drpc-runtime\')')
-src.push('const RPC = require(\'drpc-runtime/rpc\')')
+src.push('const DRPC = require(\'drpc_dweb-runtime\')')
+src.push('const RPC = require(\'drpc_dweb-runtime/rpc\')')
 src.push('')
 
 src.push(
