@@ -1,6 +1,6 @@
 const messages = require('./rpc-messages')
-const DRPC = require('drpc-runtime')
-const RPC = require('drpc-runtime/rpc')
+const DWRPC = require('dwrpc-runtime')
+const RPC = require('dwrpc-runtime/rpc')
 
 const errorEncoding = {
   encode: messages.RPCError.encode,
@@ -16,7 +16,7 @@ const errorEncoding = {
   }
 }
 
-class DRPCServiceTest {
+class DWRPCServiceTest {
   constructor (rpc) {
     const service = rpc.defineService({ id: 2 })
 
@@ -55,7 +55,7 @@ class DRPCServiceTest {
   }
 }
 
-module.exports = class DRPCSession extends DRPC {
+module.exports = class DWRPCSession extends DWRPC {
   constructor (rawSocket, { maxSize = 2 * 1024 * 1024 * 1024 } = {}) {
     super()
 
@@ -72,7 +72,7 @@ module.exports = class DRPCSession extends DRPC {
       if ((err !== this.rawSocketError && !isStreamError(err)) || this.listenerCount('error')) this.emit('error', err)
     })
 
-    this.test = new DRPCServiceTest(rpc)
+    this.test = new DWRPCServiceTest(rpc)
   }
 
   destroy (err) {

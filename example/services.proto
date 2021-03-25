@@ -7,7 +7,7 @@ message TestResponse {
 }
 
 service Test {
-  option (drpc.service) = 2;
-  rpc Test (TestRequest) returns (TestResponse) { option (drpc.method) = 5; }
+  option (dwrpc.service) = 2;
+  rpc Test (TestRequest) returns (TestResponse) { option (dwrpc.method) = 5; }
   rpc Boring (NULL) returns (NULL) {}
 }

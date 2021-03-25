@@ -1,9 +1,9 @@
-# drpc
+# dwrpc
 
 Simple RPC with Protobuf Services
 
 ```
-npm install drpc-dweb
+npm install dwrpc-dweb
 ```
 
 ## Usage
@@ -20,12 +20,12 @@ service Example {
 }
 ```
 
-Then compile it using the drpc compiler
+Then compile it using the dwrpc compiler
 
 ```
-npm install -g drpc-dweb
-drpc services.proto --rpc=rpc.js --messages=rpc-messages.js
-npm install --save drpc-runtime # make sure to add this to your package.json
+npm install -g dwrpc-dweb
+dwrpc services.proto --rpc=rpc.js --messages=rpc-messages.js
+npm install --save dwrpc-runtime # make sure to add this to your package.json
 ```
 
 That's it!
