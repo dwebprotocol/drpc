@@ -5,7 +5,7 @@
 /* eslint-disable no-redeclare */
 /* eslint-disable camelcase */
 
-var encodings = require('drpc_dweb-runtime/encodings')
+var encodings = require('drpc-runtime/encodings')
 var varint = encodings.varint
 var skip = encodings.skip
 
