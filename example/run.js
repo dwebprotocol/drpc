@@ -1,6 +1,6 @@
-const HRPC = require('./rpc')
+const DWRPC = require('./rpc')
 
-HRPC.createServer(function (client) {
+DWRPC.createServer(function (client) {
   client.test.onRequest({
     test (req) {
       if (req.name === 'fail') {
@@ -18,7 +18,7 @@ HRPC.createServer(function (client) {
 }).listen('/tmp/test.sock').then(function () {
   console.log('listening...')
 
-  const c = HRPC.connect('/tmp/test.sock')
+  const c = DWRPC.connect('/tmp/test.sock')
 
   c.test.test({ name: 'foo' }).then(res => {
     console.log(res)
